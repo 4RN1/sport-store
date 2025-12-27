@@ -10,6 +10,7 @@ import InfoPage from "./pages/InfoPage";
 import Registration from "./pages/Registration";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import SuccessPage from "./pages/SuccessPage";
 
 
 
@@ -29,7 +30,7 @@ function App() {
       <Route path = "/info" element = {<InfoPage/>}></Route>
       <Route path = "/registration" element = {<Registration/>}></Route>
       <Route path = "/login" element = {<LoginPage/>}></Route>
-      
+      <Route path = "/success" element = {<SuccessPage/>}></Route>
 
     </Routes>
     <Footer/>

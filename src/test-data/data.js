@@ -282,7 +282,7 @@ export const jerseysData = [
     price: 229.00,
     currency: "GEL",
     brand: "Nike",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "L", "XL"],
     inStock: true,
     description: "ბარსელონას ოფიციალური საშინაო ფორმა 2024/25 სეზონისთვის",
     imgUrl: "https://soccermaxx.ca/cdn/shop/files/1_0209e287-4e1a-4b31-817b-d52901212fc4.png?v=1730136265"
@@ -294,7 +294,7 @@ export const jerseysData = [
     price: 239.00,
     currency: "GEL",
     brand: "Adidas",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "XL"],
     inStock: true,
     description: "რეალ მადრიდის კლასიკური თეთრი საშინაო ფორმა",
     imgUrl: "https://assets.adidas.com/images/w_940,f_auto,q_auto/e470f0250dba451f92939cba348d488f_9366/IX8095_HM30.jpg"
@@ -306,7 +306,7 @@ export const jerseysData = [
     price: 219.00,
     currency: "GEL",
     brand: "Puma",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["M", "L", "XL"],
     inStock: true,
     description: "მანჩესტერ სიტის საშინაო ფორმა თანამედროვე დიზაინით",
     imgUrl: "https://www.soccerbox.com/media/catalog/product/cache/9d14d56c606ce6e31fa44a7bf9aa05c5/m/a/man-city-home-shirt-24.jpg"
@@ -330,7 +330,7 @@ export const jerseysData = [
     price: 219.00,
     currency: "GEL",
     brand: "Adidas",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L", ],
     inStock: true,
     description: "არსენალის საშინაო ფორმა წითელ-თეთრი დიზაინით",
     imgUrl: "https://assets.adidas.com/images/w_1880,f_auto,q_auto/017bd9fc18c941bc8fbfac62db414c7e_9366/IT6141_HM30.jpg"
@@ -342,7 +342,7 @@ export const jerseysData = [
     price: 209.00,
     currency: "GEL",
     brand: "Adidas",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L", ],
     inStock: true,
     description: "იუვენტუსის შავ-თეთრი საშინაო ფორმა",
     imgUrl: "https://forzaitalia.com.au/cdn/shop/files/Juventus_24-25_Home_Jersey_White_IS8002_HM30.jpg?v=1732677978"
@@ -405,7 +405,7 @@ export const sportswearData = [
     price: 89.00,
     currency: "GEL",
     brand: "Nike",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L",],
     inStock: true,
     description: "სუნთქვადი მაისური ყოველდღიური ვარჯიშისთვის",
     imgUrl: "https://thumblr.uniid.it/product/266065/f419dd69e996.jpg?width=3840&format=webp&q=75"
@@ -417,7 +417,7 @@ export const sportswearData = [
     price: 99.00,
     currency: "GEL",
     brand: "Adidas",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["M", "L", "XL"],
     inStock: true,
     description: "მსუბუქი შორტები ოფლის გამოდევნის ტექნოლოგიით",
     imgUrl: "https://assets.adidas.com/images/w_600,f_auto,q_auto/4eb9a2b176e448d28993ae8b0118bc54_9366/AEROREADY_Made_for_Training_Minimal_Two-in-One_Shorts_Black_HN1044_01_laydown.jpg"
@@ -441,7 +441,7 @@ export const sportswearData = [
     price: 119.00,
     currency: "GEL",
     brand: "Nike",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "L", "XL"],
     inStock: true,
     description: "კომპრესიული შარვალი კუნთების მხარდაჭერისთვის",
     imgUrl: "https://i.ebayimg.com/images/g/HyMAAOSwyvJh36pw/s-l1600.webp"
@@ -453,7 +453,7 @@ export const sportswearData = [
     price: 139.00,
     currency: "GEL",
     brand: "Adidas",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M","XL"],
     inStock: false,
     description: "კლასიკური სავარჯიშო შარვალი ფეხბურთელებისთვის",
     imgUrl: "https://cdn.sportshop.com/catalog/product/1500/1500/1/6/160328_1_1.jpg"
@@ -477,7 +477,7 @@ export const sportswearData = [
     price: 149.00,
     currency: "GEL",
     brand: "Nike",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "L"],
     inStock: true,
     description: "პრემიუმ სავარჯიშო ზედა ნაწილი სიცივისთვის",
     imgUrl: "https://www.refwarehouse.com.au/cdn/shop/files/jackets-nike-academy-23-drill-top.webp?v=1713419087"
@@ -513,7 +513,7 @@ export const sportswearData = [
     price: 189.00,
     currency: "GEL",
     brand: "Nike",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["S", "M", "XL"],
     inStock: true,
     description: "თბილი სავარჯიშო ქურთუკი ცივი ამინდისთვის",
     imgUrl: "https://thumblr.uniid.it/product/209507/adab20d347c6.jpg?width=3840&format=webp&q=75"
@@ -970,4 +970,7 @@ export const interestingProducts = [
 ]
 
 export const allProduct = [...shoesTestData, ...runningShoesData ,...resistanceBandsData ,...ballsData, ...socksData, ...goalkeeperGlovesData ,  ...sportswearData, ...jerseysData]
-export const equipmentProducts = [...resistanceBandsData, ...ballsData ]
+export const equipmentProducts = [...resistanceBandsData, ...ballsData, ...goalkeeperGlovesData ]
+export const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
+export const shoes = [...shoesTestData , ...runningShoesData]
+

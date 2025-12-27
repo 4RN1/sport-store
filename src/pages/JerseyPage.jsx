@@ -1,11 +1,70 @@
-import { jerseysData, socksData, sportswearData } from "@/test-data/data";
+import { clothesProducts } from "@/test-data/data";
+import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 
 const JerseyPage = () => {
 
-const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
+const [activeCategory, setActiveCategory] = useState(null)
+const [displaySorted , setDisplaySorted] = useState("none")
+const [inStock , setInStock] = useState("all")
+const [selectedSize, setSelectedsize] = useState("all")
+
+ const getProcessedProducts = () => {
+  let list = activeCategory ? clothesProducts.filter( f => f.category === activeCategory) : [...clothesProducts];
+
+
+
+
+  if (selectedSize !== "all") {
+    list = list.filter(item => {
+      if (selectedSize === "small") {
+        return item.sizes.includes("S");
+      }
+      if (selectedSize === "medium") {
+               return item.sizes.includes("M");
+
+      }
+      if (selectedSize === "large") {
+               return item.sizes.includes("L");
+
+      }
+      if (selectedSize === "extraLarge") {
+              return item.sizes.includes("XL");
+
+      }
+      return true
+    })
+  }
+ 
+
+  if (inStock === "yes") {
+    list = list.filter(item => item.inStock === true)
+  } else if (inStock === "no") {
+   list = list.filter(item => item.inStock === false)
+  } 
+
+   if (displaySorted === "lowToHigh") {
+    return list.sort((a , b) => a.price - b.price)
+  } else if (displaySorted === "highToLow") {
+    return list.sort((a, b) => b.price - a.price)
+  } 
+
+
+  return list
+}
+
+const finalProducts = getProcessedProducts()
+
+
+const filteredByCategory = (category) => {
+  setActiveCategory(category)
+}
+
+const handleStock = (e) => setInStock(e.target.value)
+const handleSort = (e) => setDisplaySorted(e.target.value)
+const handleSize =(e) => setSelectedsize(e.target.value)
 
 
 
@@ -30,13 +89,13 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
 
           <ul className="flex flex-col text-md font-medium p-2">
             
-            <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li  onClick={() =>  filteredByCategory("ფორმები")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
               ფორმები
             </li>
-             <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+             <li onClick={() =>  filteredByCategory("სპორტული ტანსაცმელი")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
               სპორტული ტანსაცმელი
             </li>
-              <li className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+              <li onClick={() =>  filteredByCategory("გეტრები")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
               წინდები/გეტრები
             </li>
           </ul>
@@ -48,11 +107,22 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
           {/* FILTER BAR */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8 ">
             
-          
+           <div className="flex flex-col items-center">
+              <p className="mb-1 font-black text-sm">ზომა</p>
+              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSize}>
+                <option value="all">ყველა</option>
+                <option value="small">S</option>
+                <option value="medium">M</option>
+                <option value="large">L</option>
+                <option value="extraLarge">XL</option>
+
+              </select>
+            </div>
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">მარაგშია</p>
-              <select className="w-full px-2 py-1.5 border rounded">
+              <select className="w-full px-2 py-1.5 border rounded" onChange={handleStock}>
+                <option value="all">ყველა</option>
                 <option value="yes">კი</option>
                 <option value="no">არა</option>
               </select>
@@ -60,17 +130,20 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">დალაგება</p>
-              <select className="w-full px-2 py-1.5 border rounded">
+              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSort}>
+                <option value="none">None</option>
                 <option value="lowToHigh">ზრდადობით</option>
                 <option value="highToLow">კლებადობით</option>
               </select>
             </div>
 
+             
+
           </div>
 
           {/* PRODUCTS GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 place-items-center">
-            {clothesProducts.map((item) => (
+            {finalProducts.map((item) => (
               <div
                 key={item.id}
                 className="shadow-lg rounded-xl border relative bg-white w-full max-w-80"
@@ -101,7 +174,7 @@ const clothesProducts = [...jerseysData, ...sportswearData , ...socksData, ]
 
                   <div className="flex items-center justify-between mt-3">
                     <p className="font-bold text-lg">
-                      {item.price.toFixed(2)}₾
+                      {item.price.toFixed(2)}$
                     </p>
 
                     <Link

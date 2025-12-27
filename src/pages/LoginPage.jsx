@@ -12,10 +12,10 @@ const LoginPage = () => {
     <div className="flex flex-col items-center justify-center h-180">
 
 
-    <h1 className="text-sm md:text-xl lg:text-2xl font-bold " >შესვლა</h1>
+    <h1 className="text-md md:text-xl lg:text-2xl font-bold">შესვლა</h1>
       
 
-       <form onSubmit={handleSubmit} className="flex flex-col gap-2 my-10  w-100">
+       <form onSubmit={handleSubmit} className="flex flex-col gap-2 my-10 w-80  lg:w-100">
       <div className="flex flex-col">
         <label htmlFor="email" className="font-medium">ელ ფოსტა</label>
         <input type="email" id="email" className="border border-[#c0c0c0]
@@ -26,7 +26,7 @@ const LoginPage = () => {
         <input type="password" id="password" className="border
         w-full py-1 rounded my-2 px-3 border-[#c0c0c0] " required />
 </div>
-   <div className="flex justify-between">
+   <div className="flex justify-between ">
     <div>
     <input type="checkbox" name="remember" id="remember"  className="mx-1" />
     <label htmlFor="remember">დამიმახსოვე</label>
@@ -39,7 +39,7 @@ const LoginPage = () => {
 
 
 
-    <Link to="/registration"> მომხმარებლის რეგისტრაცია</Link>
+    <Link to="/registration" className="font-medium hover:opacity-75"> მომხმარებლის რეგისტრაცია</Link>
 </div>
    </>
   )

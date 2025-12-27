@@ -68,7 +68,7 @@ const Home = () => {
 
                     <div className="flex items-center justify-between mt-3">
                       <p className="font-bold text-lg">
-                        {item.price.toFixed(2)}₾
+                        {item.price.toFixed(2)}$
                       </p>
 
                       <Link

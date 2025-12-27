@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-sm md:text-xl lg:text-2xl font-bold">მომხმარებლის რეგისტრაცია</h1>
+    <div className="flex flex-col items-center justify-center h-screen mx-10 md:mx-0">
+      <h1 className="text-md md:text-xl lg:text-2xl font-bold">მომხმარებლის რეგისტრაცია</h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 my-20">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 my-10">
         <div className="flex gap-2.5 my-2">
           <div className="flex flex-col">
             <label htmlFor="name" className="font-medium">სახელი</label>
@@ -41,6 +43,7 @@ const Registration = () => {
         <button type="submit" className="py-2 bg-black text-white rounded font-bold my-5">რეგისტრაცია</button>
       </form>
 
+    <Link to="/login" className="font-medium hover:opacity-75"> ავტორიზაცია</Link>
 
     <div>
       

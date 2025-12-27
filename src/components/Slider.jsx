@@ -29,7 +29,7 @@ const Slider = () => {
 
       {/* Boots */}
       <SwiperSlide>
-        <Link to="/category/boots">
+        <Link to="/category/shoes">
           <img
             src="https://www.futbolemotion.com/imagesbanners/xxl/puma_unleashed25_Q1.webp"
             className="w-full h-full object-cover"
@@ -40,7 +40,7 @@ const Slider = () => {
 
       {/* Equipment */}
       <SwiperSlide>
-        <Link to="/category/equipment">
+        <Link to="/product/110">
           <img
             src="https://static.nike.com/a/images/w_2880,h_1410,c_fill,f_auto/3ce86b0e-21b3-4b13-bbe4-198f221c564f/image.png"
             className="w-full h-full object-cover"

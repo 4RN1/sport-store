@@ -1,13 +1,13 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { allProduct } from "@/test-data/data";
 import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
-
+import { PayPalButtons } from "@paypal/react-paypal-js";
 const ProductDetailPage = () => {
   const [active, setactive] = useState("description");
 
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const product = allProduct.find((p) => p.id === Number(id));
 
   if (!product)
@@ -34,7 +34,7 @@ const ProductDetailPage = () => {
             {product.name}
           </h2>
           <p className="text-lg lg:text-xl font-bold ">
-            {product.price.toFixed(2)}₾
+            {product.price.toFixed(2)}$
           </p>
           <p
             className={`text-lg ${
@@ -55,7 +55,7 @@ const ProductDetailPage = () => {
             </label>
             <select name="sizes" id="size">
               {product.sizes.map((size) => (
-                <option value={product.sizes}>{size}</option>
+                <option key={id} value={product.sizes}>{size}</option>
               ))}
             </select>
           </div>
@@ -75,14 +75,41 @@ const ProductDetailPage = () => {
               name="number"
               id="num"
               defaultValue={1}
+              min={0}
               className="w-10 border border-black rounded-lg p-1  font-medium"
             />
           </div>
 
-          <button className=" py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1">
+          <button disabled={!product.inStock} className={` py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1 cursor-pointer  opa  ${!product.inStock ? "opacity-20 " : "hover:opacity-85"} `}>
             < FaBasketShopping/>
             კალათაში დამატება
           </button>
+            <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    disabled={!product.inStock}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: product.price.toFixed(2), // send this single product price
+                              currency_code: "USD",
+                            },
+                          },
+                        ],
+                      });
+                    }}
+              onApprove={() => {   
+                 navigate("/success", {
+                  state: {
+                    productName: product.name,
+                    productPrice: product.price,
+                  },
+                });
+              }}
+
+              
+            />
         </div>
       </div>
 
