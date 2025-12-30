@@ -5,7 +5,7 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/cartContext";
 
 // sd
 
