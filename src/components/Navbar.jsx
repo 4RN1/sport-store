@@ -5,10 +5,14 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
+import { useCart } from "@/context/CartContext";
+
+
 
 function Navbar() {
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const { cart, removeFromCart, totalPrice } = useCart();
 
   return (
     <header className="w-full bg-neutral-900 text-white">
@@ -122,18 +126,6 @@ function Navbar() {
             onClick={() => setShowCart(false)}
           />
 
-
-
-
-
-
-
-
-
-
-
-
-
           {/* CART */}
           <div className={`fixed top-0 right-0 h-full w-0  md:w-120 bg-[#5f5f5f] z-50 py-5 ${showCart ? " transition duration-300 ease-in w-[80%]" : "w-0"} `}>
             <div className="flex justify-between mb-10 border-b pb-3">
@@ -146,12 +138,57 @@ function Navbar() {
               </button>
             </div>
 
-            <div>
-              {/* არჩეული პროდუქტები აქ */}
-              <h1 className="text-center text-2xl text-white">
-                კალათა ცარიელია...
-              </h1>
-            </div>
+            <div className="px-5 space-y-4 overflow-y-auto h-[calc(100vh-160px)]">
+  {cart.length === 0 ? (
+    <h1 className="text-center text-xl text-white opacity-70">
+      კალათა ცარიელია...
+    </h1>
+  ) : (
+    cart.map((item) => (
+      <div
+        key={item.id}
+        className="flex items-center justify-between bg-[#777] rounded p-3"
+      >
+        <div className="flex items-center gap-3">
+          <img
+            src={item.imgUrl}
+            alt={item.name}
+            className="w-14 h-14 rounded object-cover"
+          />
+
+          <div>
+            <p className="text-white text-sm font-semibold">
+              {item.name}
+            </p>
+            <p className="text-white text-xs opacity-80">
+              {item.qty} × ${item.price}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => removeFromCart(item.id)}
+          className="text-red-700 text-lg cursor-pointer hover:text-red-500"
+        >
+          ✕
+        </button>
+      </div>
+    ))
+  )}
+</div>
+{cart.length > 0 && (
+  <div className="absolute bottom-0 left-0 w-full border-t border-white/20 p-5 bg-[#5f5f5f]">
+    <div className="flex justify-between text-white mb-4">
+      <span className="font-semibold">ჯამი:</span>
+      <span className="font-bold">${totalPrice.toFixed(2)}</span>
+    </div>
+
+    <button className="w-full bg-black text-white py-2 rounded">
+      გადახდა
+    </button>
+  </div>
+)}
+
           </div>
         </>
       )}

@@ -80,13 +80,15 @@ const ProductDetailPage = () => {
             />
           </div>
 
-          <button disabled={!product.inStock} className={` py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1 cursor-pointer  opa  ${!product.inStock ? "opacity-20 " : "hover:opacity-85"} `}>
+          <button disabled={!product.inStock} className={` py-3 bg-black text-white rounded-xl flex items-center justify-center gap-1 cursor-pointer ${!product.inStock ? "opacity-20 " : "hover:opacity-85"} `}>
             < FaBasketShopping/>
             კალათაში დამატება
           </button>
+          
             <PayPalButtons
                     style={{ layout: "vertical" }}
                     disabled={!product.inStock}
+                    
                     createOrder={(data, actions) => {
                       return actions.order.create({
                         purchase_units: [
@@ -106,9 +108,9 @@ const ProductDetailPage = () => {
                     productPrice: product.price,
                   },
                 });
+                
               }}
 
-              
             />
         </div>
       </div>

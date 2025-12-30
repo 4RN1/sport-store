@@ -2,85 +2,72 @@ import { clothesProducts } from "@/test-data/data";
 import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import { useCart } from "@/context/CartContext";
 
 const JerseyPage = () => {
+  const { addToCart } = useCart();
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [displaySorted, setDisplaySorted] = useState("none");
+  const [inStock, setInStock] = useState("all");
+  const [selectedSize, setSelectedsize] = useState("all");
 
-const [activeCategory, setActiveCategory] = useState(null)
-const [displaySorted , setDisplaySorted] = useState("none")
-const [inStock , setInStock] = useState("all")
-const [selectedSize, setSelectedsize] = useState("all")
+  const getProcessedProducts = () => {
+    let list = activeCategory
+      ? clothesProducts.filter((f) => f.category === activeCategory)
+      : [...clothesProducts];
 
- const getProcessedProducts = () => {
-  let list = activeCategory ? clothesProducts.filter( f => f.category === activeCategory) : [...clothesProducts];
+    if (selectedSize !== "all") {
+      list = list.filter((item) => {
+        if (selectedSize === "small") {
+          return item.sizes.includes("S");
+        }
+        if (selectedSize === "medium") {
+          return item.sizes.includes("M");
+        }
+        if (selectedSize === "large") {
+          return item.sizes.includes("L");
+        }
+        if (selectedSize === "extraLarge") {
+          return item.sizes.includes("XL");
+        }
+        return true;
+      });
+    }
 
+    if (inStock === "yes") {
+      list = list.filter((item) => item.inStock === true);
+    } else if (inStock === "no") {
+      list = list.filter((item) => item.inStock === false);
+    }
 
+    if (displaySorted === "lowToHigh") {
+      return list.sort((a, b) => a.price - b.price);
+    } else if (displaySorted === "highToLow") {
+      return list.sort((a, b) => b.price - a.price);
+    }
 
+    return list;
+  };
 
-  if (selectedSize !== "all") {
-    list = list.filter(item => {
-      if (selectedSize === "small") {
-        return item.sizes.includes("S");
-      }
-      if (selectedSize === "medium") {
-               return item.sizes.includes("M");
+  const finalProducts = getProcessedProducts();
 
-      }
-      if (selectedSize === "large") {
-               return item.sizes.includes("L");
+  const filteredByCategory = (category) => {
+    setActiveCategory(category);
+  };
 
-      }
-      if (selectedSize === "extraLarge") {
-              return item.sizes.includes("XL");
-
-      }
-      return true
-    })
-  }
- 
-
-  if (inStock === "yes") {
-    list = list.filter(item => item.inStock === true)
-  } else if (inStock === "no") {
-   list = list.filter(item => item.inStock === false)
-  } 
-
-   if (displaySorted === "lowToHigh") {
-    return list.sort((a , b) => a.price - b.price)
-  } else if (displaySorted === "highToLow") {
-    return list.sort((a, b) => b.price - a.price)
-  } 
-
-
-  return list
-}
-
-const finalProducts = getProcessedProducts()
-
-
-const filteredByCategory = (category) => {
-  setActiveCategory(category)
-}
-
-const handleStock = (e) => setInStock(e.target.value)
-const handleSort = (e) => setDisplaySorted(e.target.value)
-const handleSize =(e) => setSelectedsize(e.target.value)
-
-
+  const handleStock = (e) => setInStock(e.target.value);
+  const handleSort = (e) => setDisplaySorted(e.target.value);
+  const handleSize = (e) => setSelectedsize(e.target.value);
 
   return (
-    
     <>
       {/* TITLE */}
       <div className="w-full h-24 flex items-center justify-center ">
-        <h1 className="text-xl md:text-2xl font-bold">
-          სპორტული ტანსაცმელები
-        </h1>
+        <h1 className="text-xl md:text-2xl font-bold">სპორტული ტანსაცმელები</h1>
       </div>
 
       {/* PAGE LAYOUT */}
       <div className="flex flex-col lg:flex-row gap-6 px-4 lg:px-10 my-10">
-        
         {/* FILTER SIDEBAR */}
         <div className="bg-[#f1f1f1] rounded h-fit w-full lg:w-72">
           <div className="border-b border-[#aaaaaa6c] font-bold px-3 py-2">
@@ -88,14 +75,22 @@ const handleSize =(e) => setSelectedsize(e.target.value)
           </div>
 
           <ul className="flex flex-col text-md font-medium p-2">
-            
-            <li  onClick={() =>  filteredByCategory("ფორმები")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li
+              onClick={() => filteredByCategory("ფორმები")}
+              className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]"
+            >
               ფორმები
             </li>
-             <li onClick={() =>  filteredByCategory("სპორტული ტანსაცმელი")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li
+              onClick={() => filteredByCategory("სპორტული ტანსაცმელი")}
+              className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]"
+            >
               სპორტული ტანსაცმელი
             </li>
-              <li onClick={() =>  filteredByCategory("გეტრები")} className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]">
+            <li
+              onClick={() => filteredByCategory("გეტრები")}
+              className="cursor-pointer hover:bg-[#cac9c967] rounded px-2 py-2 active:bg-[#cac9c967]"
+            >
               წინდები/გეტრები
             </li>
           </ul>
@@ -103,25 +98,28 @@ const handleSize =(e) => setSelectedsize(e.target.value)
 
         {/* CONTENT */}
         <div className="flex flex-col flex-1">
-
           {/* FILTER BAR */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8 ">
-            
-           <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">ზომა</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSize}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleSize}
+              >
                 <option value="all">ყველა</option>
                 <option value="small">S</option>
                 <option value="medium">M</option>
                 <option value="large">L</option>
                 <option value="extraLarge">XL</option>
-
               </select>
             </div>
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">მარაგშია</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleStock}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleStock}
+              >
                 <option value="all">ყველა</option>
                 <option value="yes">კი</option>
                 <option value="no">არა</option>
@@ -130,15 +128,15 @@ const handleSize =(e) => setSelectedsize(e.target.value)
 
             <div className="flex flex-col items-center">
               <p className="mb-1 font-black text-sm">დალაგება</p>
-              <select className="w-full px-2 py-1.5 border rounded" onChange={handleSort}>
+              <select
+                className="w-full px-2 py-1.5 border rounded"
+                onChange={handleSort}
+              >
                 <option value="none">None</option>
                 <option value="lowToHigh">ზრდადობით</option>
                 <option value="highToLow">კლებადობით</option>
               </select>
             </div>
-
-             
-
           </div>
 
           {/* PRODUCTS GRID */}
@@ -160,7 +158,8 @@ const handleSize =(e) => setSelectedsize(e.target.value)
                   <p className="text-sm">
                     ზომები:
                     <span className="font-extralight">
-                      {" "}{item.sizes.join(", ")}
+                      {" "}
+                      {item.sizes.join(", ")}
                     </span>
                   </p>
 
@@ -185,15 +184,17 @@ const handleSize =(e) => setSelectedsize(e.target.value)
                     </Link>
                   </div>
 
-                  <button className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer">
+                  <button
+                    className="absolute top-2 right-2 hover:opacity-80 active:opacity-80 cursor-pointer"
+                    onClick={() => addToCart(item)}
+                    disabled={!item.inStock}
+                  >
                     <IoMdAddCircle size={36} />
                   </button>
                 </div>
               </div>
             ))}
           </div>
-          
-
         </div>
       </div>
     </>
@@ -201,6 +202,3 @@ const handleSize =(e) => setSelectedsize(e.target.value)
 };
 
 export default JerseyPage;
-
-
-

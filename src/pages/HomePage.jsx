@@ -12,7 +12,8 @@ import { IoMdAddCircle } from "react-icons/io";
 // Test Data
 import { interestingProducts } from "@/test-data/data";
 import { Link } from "react-router-dom";
-
+import React from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Home = () => {
   return (
@@ -91,8 +92,8 @@ const Home = () => {
 
         {/* SERVICES */}
         <div className="grid grid-cols-1 lg:grid-cols-3 my-25 md:mx-25">
-          <div className="flex flex-col items-center p-5">
-            <TbTruckDelivery size={100} />
+          <div className="flex flex-col items-center my-4">
+            <iframe src="https://lottie.host/embed/990f25bc-cee3-434c-aa57-ac3a63f8ea58/F9IgPjbCxX.json" className="h-60"></iframe>
             <h3 className="text-xl font-bold my-5">მიტანის სერვისი</h3>
             <p className="text-md text-center">
               სწრაფი და უსაფრთხო მიწოდება საქართველოს მასშტაბით — თბილისში
@@ -101,8 +102,12 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-5 border-y lg:border-y-0 lg:border-x">
-            <MdOutlinePayment size={100} />
+          <div className="flex flex-col items-center  p-5 border-y lg:border-y-0 lg:border-x">
+            <iframe
+              src="https://lottie.host/embed/2c8a8406-20ba-4442-89ca-eb0da8c9c8e2/lzkHFHqYrQ.json"
+              frameborder="0"
+              className="h-60"
+            ></iframe>
             <h3 className="text-xl font-bold my-5 text-center">
               Visa და Mastercard-ით გადახდები
             </h3>
@@ -111,8 +116,12 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center p-5">
-            <FiGift size={100} />
+          <div className="flex flex-col items-center p-5 ">
+            <iframe
+              src="https://lottie.host/embed/a3940f32-54d8-4928-b98f-d444c5419f41/ed1pIHWDef.lottie"
+              frameborder="0"
+              className="h-60"
+            ></iframe>
             <h3 className="text-xl font-bold my-5 text-center">
               სასაჩუქრე ვაუჩერები
             </h3>
