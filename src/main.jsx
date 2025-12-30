@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from './App.jsx'
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { CartProvider } from "./context/CartContext";
-// d
+// dD
 createRoot(document.getElementById('root')).render(
   <StrictMode>
   <BrowserRouter>
