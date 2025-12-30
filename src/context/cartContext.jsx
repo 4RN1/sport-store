@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+// context tutorial
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
