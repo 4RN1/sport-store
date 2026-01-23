@@ -3,7 +3,7 @@ import { useState } from "react";
 // import { useMemo } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/cartContext";
 
 const AllCategory = () => {
 

@@ -4,7 +4,7 @@ import './index.css'
 import { BrowserRouter } from "react-router-dom";
 import App from './App.jsx'
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { CartProvider } from "./context/CartContext.jsx";
+import { CartProvider } from "./context/cartContext";
 // dD
 createRoot(document.getElementById('root')).render(
   <StrictMode>

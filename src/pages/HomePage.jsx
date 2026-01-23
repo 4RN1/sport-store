@@ -14,7 +14,7 @@ import { interestingProducts } from "@/test-data/data";
 import { Link } from "react-router-dom";
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/cartContext";
 
 const Home = () => {
   const { addToCart } = useCart();
