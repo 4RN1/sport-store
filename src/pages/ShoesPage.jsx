@@ -2,7 +2,7 @@ import { shoes } from "@/test-data/data";
 import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useCart } from "@/context/cartContext";
+import { useCart } from "@/context/CartContext";
 
 const ShoesPage = () => {
   const { addToCart } = useCart();

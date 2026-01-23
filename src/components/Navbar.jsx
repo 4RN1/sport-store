@@ -5,7 +5,7 @@ import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
-import { useCart } from "@/context/cartContext";
+import { useCart } from "@/context/CartContext";
 
 // sd
 
@@ -127,7 +127,7 @@ function Navbar() {
           />
 
           {/* CART */}
-          <div className={`fixed top-0 right-0 h-full w-0  md:w-120 bg-[#5f5f5f] z-50 py-5 ${showCart ? " transition duration-300 ease-in w-[80%]" : "w-0"} `}>
+          <div className={`fixed top-0 right-0 h-full w-0  md:w-120 bg-[#5f5f5f] z-50 py-5 `}>
             <div className="flex justify-between mb-10 border-b pb-3">
               <h1 className="text-white text-2xl pl-5">საყიდლები</h1>
               <button

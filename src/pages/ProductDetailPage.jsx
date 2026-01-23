@@ -3,7 +3,7 @@ import { allProduct } from "@/test-data/data";
 import { FaBasketShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import { useCart } from "@/context/cartContext";
+import { useCart } from "@/context/CartContext";
 
 
 
