@@ -15,7 +15,7 @@ function Navbar() {
   const { cart, removeFromCart, totalPrice } = useCart();
 
   return (
-    <header className="w-full bg-neutral-900 text-white">
+    <header className="w-full bg-neutral-900 text-white fixed top-0 z-50 shadow-md">
       <div className="w-full mx-auto h-16 flex items-center justify-around">
         <TiThMenu size={30} onClick={() => setShowMenu(true)} className="md:hidden" />
 
@@ -55,10 +55,15 @@ function Navbar() {
             </Link>
           </span>
           <span
-            className="cursor-pointer hover:text-gray-300"
+            className="relative cursor-pointer hover:text-gray-300 flex items-center"
             onClick={() => setShowCart(true)}
           >
             <FaBasketShopping />
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
           </span>
         </div>
       </div>
@@ -183,9 +188,13 @@ function Navbar() {
       <span className="font-bold">${totalPrice.toFixed(2)}</span>
     </div>
 
-    <button className="w-full bg-black text-white py-2 rounded">
+    <Link
+      to="/cart"
+      onClick={() => setShowCart(false)}
+      className="block w-full bg-green-600 text-white py-2 rounded text-center font-semibold hover:bg-green-700"
+    >
       გადახდა
-    </button>
+    </Link>
   </div>
 )}
 

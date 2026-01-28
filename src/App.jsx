@@ -13,6 +13,7 @@ import Registration from "./pages/Registration";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import SuccessPage from "./pages/SuccessPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/category/shoes" element={<ShoesPage />} />
         <Route path="/category/equipment" element={<EquipmentPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/info" element={<InfoPage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<LoginPage />} />
