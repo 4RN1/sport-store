@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Chatbot from "./components/AiChatBot";
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/HomePage";
 import AllCategory from "./pages/AllCategoryPage";
@@ -14,6 +15,7 @@ import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import SuccessPage from "./pages/SuccessPage";
 import CartPage from "./pages/CartPage";
+import AccountPage from "./pages/AccountPage";
 
 function App() {
   return (
@@ -27,14 +29,28 @@ function App() {
         <Route path="/category/shoes" element={<ShoesPage />} />
         <Route path="/category/equipment" element={<EquipmentPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <CartPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/info" element={<InfoPage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/success" element={<SuccessPage />} />
       </Routes>
 
-      
       <Chatbot /> {/* 👈 stays on all pages */}
       <Footer />
     </>

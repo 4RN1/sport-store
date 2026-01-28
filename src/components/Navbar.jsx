@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { MdAccountCircle } from "react-icons/md";
 import { FaBasketShopping } from "react-icons/fa6";
@@ -6,13 +6,21 @@ import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
 import { useCart } from "@/context/cartContext";
-
-// sd
+import { useAuth } from "@/context/authContext";
 
 function Navbar() {
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
   const { cart, removeFromCart, totalPrice } = useCart();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    setShowAccount(false);
+    navigate("/");
+  };
 
   return (
     <header className="w-full bg-neutral-900 text-white">
@@ -45,18 +53,64 @@ function Navbar() {
         </nav>
 
         {/* Icons */}
-        <div className="flex items-center gap-5 text-lg">
+        <div className="flex items-center gap-5 text-lg relative">
           <span className="cursor-pointer hover:text-gray-300">
             <IoMdSearch />
           </span>
-          <span>
-            <Link to="/login" className="cursor-pointer hover:text-gray-300">
-              <MdAccountCircle />
-            </Link>
+          <span
+            className="cursor-pointer hover:text-gray-300 relative"
+            onClick={() => setShowAccount(!showAccount)}
+          >
+            <MdAccountCircle size={24} />
+            {user ? (
+              <div
+                className={`absolute right-0 top-full mt-2 bg-white text-black rounded shadow-lg min-w-48 z-50 ${
+                  showAccount ? "block" : "hidden"
+                }`}
+              >
+                <div className="px-4 py-3 border-b">
+                  <p className="font-semibold text-sm">{user.email}</p>
+                </div>
+                <Link
+                  to="/account"
+                  className="block px-4 py-2 hover:bg-gray-100 text-sm"
+                  onClick={() => setShowAccount(false)}
+                >
+                  ჩემი ანგარიში
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-600"
+                >
+                  გამოსვლა
+                </button>
+              </div>
+            ) : (
+              <div
+                className={`absolute right-0 top-full mt-2 bg-white text-black rounded shadow-lg min-w-48 z-50 ${
+                  showAccount ? "block" : "hidden"
+                }`}
+              >
+                <Link
+                  to="/login"
+                  className="block px-4 py-2 hover:bg-gray-100 text-sm font-semibold"
+                  onClick={() => setShowAccount(false)}
+                >
+                  შესვლა
+                </Link>
+                <Link
+                  to="/registration"
+                  className="block px-4 py-2 hover:bg-gray-100 text-sm font-semibold border-t"
+                  onClick={() => setShowAccount(false)}
+                >
+                  რეგისტრაცია
+                </Link>
+              </div>
+            )}
           </span>
-          <Link
-            to="/cart"
+          <span
             className="relative cursor-pointer hover:text-gray-300 flex items-center"
+            onClick={() => setShowCart(true)}
           >
             <FaBasketShopping />
             {cart.length > 0 && (
@@ -64,7 +118,7 @@ function Navbar() {
                 {cart.length}
               </span>
             )}
-          </Link>
+          </span>
         </div>
       </div>
 
