@@ -242,9 +242,13 @@ function Navbar() {
       <span className="font-bold">${totalPrice.toFixed(2)}</span>
     </div>
 
-    <button className="w-full bg-black text-white py-2 rounded">
+    <Link
+      to="/cart"
+      onClick={() => setShowCart(false)}
+      className="block w-full bg-green-600 text-white py-2 rounded font-semibold hover:bg-green-700 text-center"
+    >
       გადახდა
-    </button>
+    </Link>
   </div>
 )}
 
