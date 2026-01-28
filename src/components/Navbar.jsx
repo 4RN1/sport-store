@@ -15,7 +15,7 @@ function Navbar() {
   const { cart, removeFromCart, totalPrice } = useCart();
 
   return (
-    <header className="w-full bg-neutral-900 text-white fixed top-0 z-50 shadow-md">
+    <header className="w-full bg-neutral-900 text-white ">
       <div className="w-full mx-auto h-16 flex items-center justify-around">
         <TiThMenu size={30} onClick={() => setShowMenu(true)} className="md:hidden" />
 
