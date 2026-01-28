@@ -34,8 +34,9 @@ function App() {
         <Route path="/success" element={<SuccessPage />} />
       </Routes>
 
-      <Footer />
+      
       <Chatbot /> {/* 👈 stays on all pages */}
+      <Footer />
     </>
   );
 }
